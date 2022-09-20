@@ -1,0 +1,40 @@
+{
+  "name": "Deezer Control",
+  "description": "Deezer controler",
+  "version": "1.0",
+  "manifest_version": 3,
+  "icons": {
+    "128": "icon.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["background", "tabs", "scripting"],
+  "host_permissions": ["*://*.deezer.com/*"],
+  "action": {
+    "default_icon": "icon_16.png"
+  },
+  "commands": {
+    "previous-track": {
+      "suggested_key": {
+        "default": "Alt+1"
+      },
+      "description": "Previous track",
+      "global": true
+    },
+    "next-track": {
+      "suggested_key": {
+        "default": "Alt+3"
+      },
+      "description": "Next track",
+      "global": true
+    },
+    "play-pause": {
+      "suggested_key": {
+        "default": "Alt+2"
+      },
+      "description": "Play/pause music",
+      "global": true
+    }
+  }
+}
