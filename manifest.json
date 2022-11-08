@@ -12,7 +12,7 @@
   "permissions": ["background", "tabs", "scripting"],
   "host_permissions": ["*://*.deezer.com/*"],
   "action": {
-    "default_icon": "icon_16.png"
+    "default_icon": "icon.png"
   },
   "commands": {
     "previous-track": {
