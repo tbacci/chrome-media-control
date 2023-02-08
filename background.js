@@ -1,12 +1,19 @@
-console.log(`Deezer Control loaded`);
-let deezerTab = null;
+console.log(`Media Control loaded`);
+
+let targetTab = null;
+let targetType = null
 
 //Check all tabs to find deezer on startup
 chrome.tabs.query({}, (tabs) => {
     for(tab of tabs) {
         if (tab.url.match(/https:\/\/(www\.)?deezer\.com.*/)) {
-            deezerTab = tab.id
+            targetTab = tab.id
+            targetType = 'deezer'
             console.log('Deezer detected');
+        } else if (tab.url.match(/https:\/\/(www\.)?youtube\.com.*/)) {
+            targetTab = tab.id
+            targetType = 'youtube'
+            console.log('Youtube detected');
         }
     }
 })
@@ -16,41 +23,64 @@ chrome.tabs.onUpdated.addListener(
     (tabId, changeInfo, tab) => {
         // If tab goes on deezer, let's save it
         if(tab.url.match(/https:\/\/(www\.)?deezer\.com.*/)) {
-            deezerTab = tabId
+            targetTab = tabId
+            targetType = 'deezer'
             console.log('Deezer detected');
+        } else if (tab.url.match(/https:\/\/(www\.)?youtube\.com.*/)) {
+            targetTab = tab.id
+            targetType = 'youtube'
+            console.log('Youtube detected');
         }
 })
 
 chrome.commands.onCommand.addListener((command) => {
-    console.log('Deezer control - ' + command)
+    console.log('Media control - ' + command)
 
     switch (command) {
         case 'previous-track':
             chrome.scripting.executeScript({
-                target: {tabId: deezerTab},
+                target: {tabId: targetTab},
                 func: () => {
-                    const btnPrevious ='.player-bottom .player-controls li button'
-                    document.querySelector(btnPrevious).click();
+                    const selectors = [
+                        '.player-bottom .player-controls li button', // deezer
+                        '.ytp-prev-button' // youtube
+                    ]
+                    for(selector of selectors) {
+                        const element = document.querySelector(selector)
+                        element?.click();
+                    }
                 },
                 args: ['action'],
             });
         break;
         case 'next-track':
             chrome.scripting.executeScript({
-                target: {tabId: deezerTab},
+                target: {tabId: targetTab},
                 func: () => {
-                    const btnNext = '.player-bottom .player-controls li:nth-child(n+4) button'
-                    document.querySelector(btnNext).click();
+                    const selectors = [
+                        '.player-bottom .player-controls li:nth-child(n+4) button', // deezer
+                        '.ytp-next-button' // youtube
+                    ]
+                    for(selector of selectors) {
+                        const element = document.querySelector(selector)
+                        element?.click();
+                    }
                 },
                 args: ['action'],
             });
             break;
         case 'play-pause':
             chrome.scripting.executeScript({
-                target: {tabId: deezerTab},
+                target: {tabId: targetTab},
                 func: () => {
-                    const btnPlay = '.player-bottom .player-controls li:nth-child(n+2) button'
-                    document.querySelector(btnPlay).click();
+                    const selectors = [
+                        '.player-bottom .player-controls li:nth-child(n+2) button', // deezer
+                        '.ytp-play-button' // youtube
+                    ]
+                    for(selector of selectors) {
+                        const element = document.querySelector(selector)
+                        element?.click();
+                    }
                 },
                 args: ['action'],
             });

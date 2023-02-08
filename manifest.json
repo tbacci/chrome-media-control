@@ -1,6 +1,6 @@
 {
-  "name": "Deezer Control",
-  "description": "Deezer controler",
+  "name": "Media Control",
+  "description": "Media controler",
   "version": "1.0",
   "manifest_version": 3,
   "icons": {
@@ -10,7 +10,7 @@
     "service_worker": "background.js"
   },
   "permissions": ["background", "tabs", "scripting"],
-  "host_permissions": ["*://*.deezer.com/*"],
+  "host_permissions": ["*://*.deezer.com/*", "*://*.youtube.com/*"],
   "action": {
     "default_icon": "icon.png"
   },
