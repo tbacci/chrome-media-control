@@ -1,18 +1,15 @@
 console.log(`Media Control loaded`);
 
 let targetTab = null;
-let targetType = null
 
 //Check all tabs to find deezer on startup
 chrome.tabs.query({}, (tabs) => {
     for(tab of tabs) {
         if (tab.url.match(/https:\/\/(www\.)?deezer\.com.*/)) {
             targetTab = tab.id
-            targetType = 'deezer'
             console.log('Deezer detected');
         } else if (tab.url.match(/https:\/\/(www\.)?youtube\.com.*/)) {
             targetTab = tab.id
-            targetType = 'youtube'
             console.log('Youtube detected');
         }
     }
@@ -24,11 +21,9 @@ chrome.tabs.onUpdated.addListener(
         // If tab goes on deezer, let's save it
         if(tab.url.match(/https:\/\/(www\.)?deezer\.com.*/)) {
             targetTab = tabId
-            targetType = 'deezer'
             console.log('Deezer detected');
         } else if (tab.url.match(/https:\/\/(www\.)?youtube\.com.*/)) {
             targetTab = tab.id
-            targetType = 'youtube'
             console.log('Youtube detected');
         }
 })
