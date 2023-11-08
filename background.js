@@ -37,7 +37,7 @@ chrome.commands.onCommand.addListener((command) => {
                 target: {tabId: targetTab},
                 func: () => {
                     const selectors = [
-                        '.player-bottom .player-controls li button', // deezer
+                        '#page_player > div > div.css-s4gaps > div.css-4bwcy0 > div.chakra-button__group.css-140muf1 > button:nth-child(2)', // deezer
                         '.ytp-prev-button' // youtube
                     ]
                     for(selector of selectors) {
@@ -53,7 +53,7 @@ chrome.commands.onCommand.addListener((command) => {
                 target: {tabId: targetTab},
                 func: () => {
                     const selectors = [
-                        '.player-bottom .player-controls li:nth-child(n+4) button', // deezer
+                        '#page_player > div > div.css-s4gaps > div.css-4bwcy0 > div.chakra-button__group.css-140muf1 > button:nth-child(4)', // deezer
                         '.ytp-next-button' // youtube
                     ]
                     for(selector of selectors) {
@@ -69,7 +69,7 @@ chrome.commands.onCommand.addListener((command) => {
                 target: {tabId: targetTab},
                 func: () => {
                     const selectors = [
-                        '.player-bottom .player-controls li:nth-child(n+2) button', // deezer
+                        '#page_player > div > div.css-s4gaps > div.css-4bwcy0 > div.chakra-button__group.css-140muf1 > button.chakra-button.css-8cy61', // deezer
                         '.ytp-play-button' // youtube
                     ]
                     for(selector of selectors) {
