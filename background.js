@@ -69,7 +69,7 @@ chrome.commands.onCommand.addListener((command) => {
                 target: {tabId: targetTab},
                 func: () => {
                     const selectors = [
-                        '#page_player button[data-testid="play_button_play"]', // deezer
+                        '#page_player button[data-testid="play_button_pause"], #page_player button[data-testid="play_button_play"]', // deezer
                         '.ytp-play-button' // youtube
                     ]
                     for(selector of selectors) {
